@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_flutter_app/core/databases/cache/cache_helper.dart';
 import 'package:news_flutter_app/core/theme/dark_theme.dart';
-import 'package:news_flutter_app/core/theme/light_theme.dart';
 import 'package:news_flutter_app/presentation/cubit/newscubit.dart';
 import 'package:news_flutter_app/presentation/cubit/newsstates.dart';
 import 'package:news_flutter_app/presentation/screens/news_listing_screen/news_listing_screen.dart';
 import 'package:news_flutter_app/simpleblocobserver.dart';
+import 'depednecy_injection.dart' as depndencyInjection;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await depndencyInjection.init();
 
   await CacheHelper().init();
+
   Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
